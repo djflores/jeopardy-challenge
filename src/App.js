@@ -1,26 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import './App.scss';
+import Board from './views/Board';
+import Clue from './views/Clue';
+import Home from './views/Home';
+import AppState from './context/GlobalState';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <AppState>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route path="/board" component={Board} />
+                    <Route path="/clue/:id" component={Clue} />
+                </Switch>
+            </AppState>
+        </BrowserRouter>
+    );
 }
 
 export default App;
